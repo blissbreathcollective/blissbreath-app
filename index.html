@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Blissbreath · Breathe into Bliss</title>
+  <meta name="description" content="Blissbreath Lifestyle Collective — the complete conscious lifestyle. Breathwork, Signature Energy Sequences, embodied movement, and nature-aligned nourishment. Begin your free 7-Day Lifestyle Reset." />
+  <meta name="theme-color" content="#faf7f2" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Blissbreath" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%233d6b66'/%3E%3Cpath d='M20 36c6-10 18-10 24 0' fill='none' stroke='%23faf7f2' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='26' r='4' fill='%23faf7f2'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --sand: #f4efe6;
+      --linen: #faf7f2;
+      --ink: #2c2a26;
+      --mute: #6b655c;
+      --teal: #3d6b66;
+      --teal-soft: #5a8a84;
+      --gold: #c4a574;
+      --leaf: #4a6b52;
+      --card: #fffdf9;
+      --line: #e8e0d4;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Iowan Old Style", Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      background: var(--linen);
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100dvh;
+    }
+    button, input { font: inherit; }
+    a { color: var(--teal); }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(250,247,242,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 16px calc(8px + var(--safe-bottom));
+    }
+    .header-row {
+      max-width: 720px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; letter-spacing: .08em; text-transform: none;
+      color: var(--ink); text-decoration: none; border: 0; background: none; cursor: pointer;
+    }
+    .brand-mark {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--teal);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
+      flex-shrink: 0;
+    }
+    nav {
+      display: flex; gap: 2px; flex-wrap: nowrap;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      max-width: 100%;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav button {
+      background: none; border: 0; cursor: pointer;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 12px; letter-spacing: .04em; color: var(--mute);
+      padding: 8px 10px; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+    }
+    nav button.active { color: var(--ink); border-bottom-color: var(--teal); }
+    main { max-width: 720px; margin: 0 auto; padding: 24px 20px calc(72px + var(--safe-bottom)); }
+    .hero { text-align: center; padding: 28px 0 20px; }
+    .eyebrow {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      letter-spacing: .16em; text-transform: uppercase; font-size: 11px; color: var(--teal);
+    }
+    h1 { font-weight: 400; font-size: clamp(28px, 6vw, 44px); margin: 10px 0 14px; line-height: 1.15; }
+    h2 { font-weight: 400; font-size: clamp(24px, 4vw, 30px); margin-bottom: 10px; }
+    h3 { font-weight: 400; }
+    p.lead { color: var(--mute); max-width: 38em; margin: 0 auto 22px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 0; cursor: pointer;
+      background: var(--teal); color: #fff;
+      padding: 12px 22px; letter-spacing: .04em;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 14px; border-radius: 999px;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+    .btn:hover { opacity: .92; }
+    .btn:active { transform: scale(.98); }
+    .btn.ghost {
+      background: transparent; color: var(--ink);
+      border: 1px solid #d9d0c3;
+    }
+    .btn:disabled { opacity: .45; cursor: default; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+    .grid { display: grid; gap: 14px; margin-top: 22px; }
+    .card {
+      background: var(--card); border: 1px solid #ece4d8;
+      padding: 18px; border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(44,42,38,.04);
+    }
+    .card h3 { font-size: 20px; margin-bottom: 6px; }
+    .card.selectable { cursor: pointer; text-align: left; width: 100%; font: inherit; color: inherit; }
+    .card.selectable:hover, .card.selectable.active {
+      border-color: var(--teal-soft);
+      box-shadow: 0 0 0 1px var(--teal-soft), 0 8px 24px rgba(61,107,102,.08);
+    }
+    .card.today {
+      border-color: var(--teal-soft);
+      box-shadow: 0 0 0 1px var(--teal-soft), 0 8px 24px rgba(61,107,102,.08);
+    }
+    .meta {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 8px;
+    }
+    .affirmation {
+      font-size: clamp(20px, 4.5vw, 26px);
+      line-height: 1.35;
+      margin: 8px 0 14px;
+      font-style: italic;
+    }
+    .pair-row {
+      display: grid; gap: 10px;
+      margin-top: 12px;
+    }
+    @media (min-width: 560px) {
+      .pair-row { grid-template-columns: 1fr 1fr; }
+    }
+    .pair-chip {
+      background: var(--sand);
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+    }
+    .pair-chip .label {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 4px;
+    }
+    .week-strip {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 18px;
+    }
+    .week-strip button {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 10px;
+      padding: 10px 4px;
+      cursor: pointer;
+      color: var(--mute);
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+    .week-strip button.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+    .timer {
+      text-align: center; background: var(--sand);
+      padding: 32px 16px; margin: 18px 0; border-radius: 18px;
+      border: 1px solid var(--line);
+    }
+    .time {
+      font-size: clamp(56px, 14vw, 72px); letter-spacing: .04em;
+      font-variant-numeric: tabular-nums; line-height: 1; margin: 8px 0;
+    }
+    .timer-sub {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 13px; color: var(--mute); margin-top: 6px;
+    }
+    .progress {
+      height: 4px; background: #e5ddd0; border-radius: 999px;
+      overflow: hidden; max-width: 240px; margin: 18px auto 0;
+    }
+    .progress > span {
+      display: block; height: 100%; width: 0%;
+      background: var(--teal); border-radius: 999px;
+      transition: width .2s linear;
+    }
+    .hidden { display: none !important; }
+    label {
+      display: block;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 13px; margin: 10px 0 6px;
+    }
+    input[type=email] {
+      width: 100%; padding: 12px 14px; border: 1px solid #ddd4c6;
+      background: #fff; border-radius: 10px; color: var(--ink);
+    }
+    input[type=email]:focus { outline: 2px solid rgba(61,107,102,.35); border-color: var(--teal); }
+    .day {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid #eee6da;
+    }
+    .day:last-child { border-bottom: 0; }
+    .day input[type=checkbox] {
+      margin-top: 4px; width: 18px; height: 18px; accent-color: var(--teal); flex-shrink: 0;
+    }
+    .day strong { display: block; margin-bottom: 2px; }
+    .day .detail { font-size: 14px; }
+    .day .prompt { color: var(--mute); font-size: 14px; margin-top: 4px; font-style: italic; }
+    .reset-progress {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size: 13px; color: var(--mute); margin: 8px 0 4px;
+    }
+    footer {
+      text-align: center; color: var(--mute); font-size: 13px;
+      padding: 8px 24px calc(28px + var(--safe-bottom));
+    }
+    @media (max-width: 520px) {
+      .header-row { flex-direction: column; align-items: flex-start; }
+      nav { width: 100%; }
+      .week-strip { gap: 4px; }
+      .week-strip button { padding: 8px 2px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <button class="brand" type="button" data-go="home" aria-label="Blissbreath home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Blissbreath</span>
+      </button>
+      <nav aria-label="Primary">
+        <button type="button" data-go="home" class="active">Home</button>
+        <button type="button" data-go="path">Path</button>
+        <button type="button" data-go="breathe">Breathe</button>
+        <button type="button" data-go="nourish">Nourish</button>
+        <button type="button" data-go="reset">Reset</button>
+        <button type="button" data-go="about">Collective</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" aria-label="Sanctuary">
+      <div class="hero">
+        <div class="eyebrow">The Complete Conscious Lifestyle</div>
+        <h1>Breathe into Bliss</h1>
+        <p class="lead">Welcome to Blissbreath Lifestyle Collective — a refined sanctuary of breathwork, movement, and nourishment that brings serene presence, awakened vitality, and intentional ease into everyday life.</p>
+        <p class="lead" style="margin-top:-10px">Breathe deeper. Move with presence. Nourish with intention. Live at one with nature.</p>
+        <div class="actions">
+          <button class="btn" type="button" data-go="reset">Begin Your Free 7-Day Lifestyle Reset</button>
+          <button class="btn ghost" type="button" id="startTodayBtn">Start today’s breath</button>
+        </div>
+      </div>
+      <article class="card" id="todayPairing">
+        <div class="meta" id="todayMeta">Today’s rhythm</div>
+        <p class="affirmation" id="todayAffirm"></p>
+        <div class="pair-row">
+          <div class="pair-chip">
+            <div class="label">Breath</div>
+            <strong id="todayBreath"></strong>
+            <p class="timer-sub" id="todayBreathDetail"></p>
+          </div>
+          <div class="pair-chip">
+            <div class="label">Nourish</div>
+            <strong id="todayRecipe"></strong>
+            <p class="timer-sub" id="todayRecipeDetail"></p>
+          </div>
+        </div>
+        <div class="actions" style="justify-content:flex-start; margin-top:14px">
+          <button class="btn ghost" type="button" data-go="nourish">See today’s plate</button>
+        </div>
+      </article>
+      <article class="card" style="margin-top:18px">
+        <div class="meta">What the collective delivers</div>
+        <h3>One seamless daily system</h3>
+        <p>Conscious breathwork &amp; meditation. Signature Energy Breath Sequences and Embodied Breath + Movement Flows. Reflective awareness and intentional mindsets. Nature-aligned nourishment for cellular health, longevity, and harmony with nature.</p>
+        <p class="timer-sub" style="margin-top:10px">Refined, sensory, and scientifically supported — everyday sanctuary at one with nature.</p>
+      </article>
+      <p class="meta" style="margin-top:22px">Browse the week</p>
+      <div class="week-strip" id="weekStrip" aria-label="Days of the week"></div>
+      <article class="card" id="peekCard" style="margin-top:12px">
+        <div class="meta" id="peekMeta"></div>
+        <p class="affirmation" id="peekAffirm" style="font-size:22px"></p>
+        <p id="peekBody" style="color:var(--mute)"></p>
+      </article>
+    </section>
+
+
+    <section id="path" class="hidden" aria-label="Path to a Blissful Life">
+      <p class="eyebrow">Bliss Breath Life 2026</p>
+      <h2>The Eight Breaths on the Path to a Blissful Life</h2>
+      <p class="lead" style="margin:0 0 16px; max-width:none">Dear Bliss Seeker — your daily companion: affirmation, pranayama, yoga, Ayurveda, and reflection. Bliss is not something you chase — it is something you breathe into, moment by moment.</p>
+      <article class="card" id="pathToday">
+        <div class="meta" id="pathDateMeta">Today</div>
+        <p class="affirmation" id="pathAffirm"></p>
+        <div class="pair-row" id="pathChips"></div>
+        <div class="grid" style="margin-top:14px" id="pathDetails"></div>
+        <div class="actions" style="justify-content:flex-start; margin-top:14px">
+          <button class="btn" type="button" id="pathStartBreath">Practice today’s pranayama</button>
+          <button class="btn ghost" type="button" data-go="nourish">Nourish</button>
+        </div>
+      </article>
+      <p class="meta" style="margin-top:22px">The Eight Breaths</p>
+      <div class="grid" id="breathsGrid"></div>
+      <article class="card" style="margin-top:14px">
+        <div class="meta">Patreon companion</div>
+        <h3>Add the year to your phone</h3>
+        <p>Subscribers get the full Bliss Breath Life 2026 calendar as a downloadable <code>.ics</code> — each day an all-day event with affirmation and practices. Drop it into Apple or Google Calendar for daily reminders.</p>
+        <div class="actions" style="justify-content:flex-start; margin-top:12px">
+          <a class="btn" href="bliss-breath-life-2026.ics" download>Download 2026 calendar (.ics)</a>
+          <a class="btn ghost" href="https://blissbreathcollective.com" target="_blank" rel="noopener">Patreon</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="breathe" class="hidden" aria-label="Conscious Breath">
+      <h2>Conscious Breath</h2>
+      <p class="lead" style="margin:0 0 8px; max-width:none">Signature Energy Breath Sequences and gentle Embodied Breath + Movement Flows — 10–15 minutes that regulate the nervous system, awaken vitality, and create spacious presence. Sit tall, soften the jaw, follow the count.</p>
+      <div class="timer" role="timer" aria-live="polite">
+        <div class="eyebrow" id="phase">Ready</div>
+        <div class="time" id="clock">04</div>
+        <p id="seqName">Box Breath · 4-4-4-4</p>
+        <p class="timer-sub" id="remaining">10:00 total</p>
+        <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+        <div class="actions">
+          <button class="btn" type="button" id="startBtn">Start 10 min</button>
+          <button class="btn ghost" type="button" id="stopBtn">Stop</button>
+        </div>
+      </div>
+      <p class="meta" style="margin-top:8px">Choose a sequence</p>
+      <div class="grid" id="seqGrid"></div>
+    </section>
+
+    <section id="nourish" class="hidden" aria-label="Nourish">
+      <h2>Nature-Aligned Nourishment</h2>
+      <p class="eyebrow" style="margin-bottom:8px">At One with Nature</p>
+      <p class="lead" style="margin:0 0 16px; max-width:none">Plant-based recipes and sips crafted to nourish the body, sustain awakened energy, and complement your breath sequences — supporting cellular health, lower inflammation, and longevity.</p>
+      <div class="grid" style="margin-bottom:8px">
+        <article class="card"><div class="meta">Collections</div><p>Post-Practice Recovery Bowls · Nervous-System Soothing Elixirs · Morning Vitality Plates &amp; Sips</p></article>
+      </div>
+      <div class="grid" id="recipeGrid"></div>
+      <p class="timer-sub" style="margin-top:16px">Full weekly recipes + lifestyle pairings live in the <a href="https://blissbreathcollective.com" target="_blank" rel="noopener">Patreon community</a>.</p>
+    </section>
+
+    <section id="reset" class="hidden" aria-label="7-Day Reset">
+      <h2>Your Free 7-Day Lifestyle Reset</h2>
+      <p class="lead" style="margin:0 0 8px; max-width:none">The complete conscious lifestyle introduction — daily breath, Signature Energy Sequences, one nature-aligned plant-based recipe, and integration prompts for reflective awareness and intentional mindsets.</p>
+      <p class="reset-progress" id="resetProgress">0 of 7 days complete</p>
+      <div id="days" class="card" style="padding-top:6px; padding-bottom:6px"></div>
+      <div class="card" style="margin-top:18px">
+        <h3>Enter your email to begin</h3>
+        <p style="color:var(--mute); margin-top:6px">Lifetime access included. Continue with the full lifestyle system in the Patreon community.</p>
+        <p style="margin-top:12px; font-style:italic; color:var(--ink)">“By Day 4 the shift in energy and clarity was unmistakable — it feels like a daily sanctuary.”</p>
+        <form id="signupForm">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@sanctuary.com" />
+          <div style="margin-top:12px">
+            <button class="btn" type="submit" id="signup">Join the Reset list</button>
+          </div>
+        </form>
+        <p id="thanks" class="hidden" style="margin-top:12px; color:var(--teal)">You’re in. Day 1 starts now — open Breathe, hold today’s affirmation, then nourish.</p>
+      </div>
+    </section>
+
+    <section id="about" class="hidden" aria-label="The Collective">
+      <h2>About Blissbreath Lifestyle Collective</h2>
+      <p class="eyebrow" style="margin-bottom:10px">The complete conscious lifestyle</p>
+      <div class="grid">
+        <article class="card">
+          <p>Blissbreath Lifestyle Collective is the culmination of more than two decades of rigorous, hands-on curation in the art of conscious living — transformative breathwork, dynamic energy activation, embodied movement, reflective awareness and intentional mindsets, and nature-aligned nourishment woven into one daily rhythm.</p>
+          <p style="margin-top:12px">Neuroscience links consistent meditation and breathwork to grey matter in regions of emotional regulation, focus, and resilience. Breath physiology supports oxygenation, vagal tone, and nervous-system balance. Plant-based eating supports cellular repair, lower inflammation, and longevity — while deepening alignment with nature.</p>
+          <p style="margin-top:12px; font-style:italic">You are at one with nature.</p>
+        </article>
+        <article class="card">
+          <div class="meta">Here you’ll find</div>
+          <p>Conscious breathwork and meditation</p>
+          <p style="margin-top:6px">Signature Energy Breath Sequences and Embodied Breath + Movement Flows</p>
+          <p style="margin-top:6px">Nature-aligned plant-based recipes and meal support</p>
+          <p style="margin-top:6px">A private community for ongoing lifestyle integration</p>
+          <p style="margin-top:14px"><a href="https://blissbreathcollective.com" target="_blank" rel="noopener">blissbreathcollective.com</a> · <a href="https://x.com/BonVegetit" target="_blank" rel="noopener">@BonVegetit</a></p>
+          <div class="actions" style="justify-content:flex-start; margin-top:14px">
+            <a class="btn" href="https://blissbreathcollective.com" target="_blank" rel="noopener">Step into the Collective on Patreon</a>
+          </div>
+          <p style="margin-top:12px; color:var(--mute)">Breathwork &amp; Meditation Facilitator Training coming soon. Private sessions &amp; group circles available as the system expands.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="path-data.js"></script>
+  <script src="formspree-config.js"></script>
+  <footer>Breathe deeper. Move with presence. Nourish with intention.<br>At one with nature · Blissbreath Lifestyle Collective + Bon Vegétit</footer>
+
+  <script>
+    const pages = ["home", "path", "breathe", "nourish", "reset", "about"];
+    const go = (id) => {
+      if (!pages.includes(id)) return;
+      pages.forEach((p) => document.getElementById(p).classList.toggle("hidden", p !== id));
+      document.querySelectorAll("nav button").forEach((b) => b.classList.toggle("active", b.dataset.go === id));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.replaceState(null, "", "#" + id);
+    };
+    document.querySelectorAll("[data-go]").forEach((el) => {
+      el.addEventListener("click", () => go(el.dataset.go));
+    });
+
+    const sequences = [
+      { id: "gratitude", name: "Morning Gratitude Breath", pattern: "4-4-6", phases: [["Inhale", 4], ["Hold", 4], ["Exhale", 6]], minutes: 10, blurb: "Soft inhale, gentle hold, longer thank-you exhale. Arrive before the day asks." },
+      { id: "box", name: "Box Breath", pattern: "4-4-4-4", phases: [["Inhale", 4], ["Hold", 4], ["Exhale", 4], ["Hold", 4]], minutes: 10, blurb: "Equal sides of the square. Presence and steady attention." },
+      { id: "energy", name: "Energy Sequence", pattern: "5-2-5", phases: [["Inhale", 5], ["Hold", 2], ["Exhale", 5]], minutes: 12, blurb: "Slightly longer inhale, complete exhale. Awakens vitality before movement." },
+      { id: "coherence", name: "Heart Coherence", pattern: "5-5", phases: [["Inhale", 5], ["Exhale", 5]], minutes: 12, blurb: "Even in-and-out through the heart space. Soften the chest, widen the breath." },
+      { id: "triangle", name: "Focus Triangle", pattern: "4-4-4", phases: [["Inhale", 4], ["Hold", 4], ["Exhale", 4]], minutes: 10, blurb: "Three sides of attention. Clear without bracing." },
+      { id: "wave", name: "Vitality Wave", pattern: "4-2-6-2", phases: [["Inhale", 4], ["Hold", 2], ["Exhale", 6], ["Hold", 2]], minutes: 12, blurb: "A rolling wave — lift, crest, release, rest. Good before a social evening." },
+      { id: "soothe", name: "Soothing Exhale", pattern: "4-7", phases: [["Inhale", 4], ["Exhale", 7]], minutes: 15, blurb: "Long out-breath for vagal tone. Evening wind-down and nervous-system sip." }
+    ];
+
+    const week = [
+      {
+        day: "Sunday", short: "Sun",
+        affirmation: "I begin again with gratitude in my breath.",
+        seqId: "gratitude",
+        recipe: "Citrus-Chia Plate",
+        recipeMeta: "Morning vitality",
+        recipeDetail: "Chia pudding, grapefruit, mint, toasted coconut.",
+        note: "Whisper the affirmation once before the first inhale."
+      },
+      {
+        day: "Monday", short: "Mon",
+        affirmation: "I meet this week with a calm, clear center.",
+        seqId: "box",
+        recipe: "Green Recovery Bowl",
+        recipeMeta: "Weekday greens",
+        recipeDetail: "Massaged kale, avocado, cucumber, lemon-herb oil, hemp seeds.",
+        note: "Move after breath before screens."
+      },
+      {
+        day: "Tuesday", short: "Tue",
+        affirmation: "Energy moves through me with ease and joy.",
+        seqId: "energy",
+        recipe: "Anti-Inflammatory Bowl",
+        recipeMeta: "Post-practice recovery",
+        recipeDetail: "Warm quinoa, roasted sweet potato, kale, tahini-turmeric, pumpkin seeds.",
+        note: "Let the inhale feel slightly brighter than yesterday."
+      },
+      {
+        day: "Wednesday", short: "Wed",
+        affirmation: "My heart and breath are in soft agreement.",
+        seqId: "coherence",
+        recipe: "Warm Lentil Pot",
+        recipeMeta: "Midweek comfort",
+        recipeDetail: "Red lentils, carrot, cumin, olive oil, lemon, fresh parsley.",
+        note: "Eat without a device."
+      },
+      {
+        day: "Thursday", short: "Thu",
+        affirmation: "I choose focus that feels spacious, not tight.",
+        seqId: "triangle",
+        recipe: "Herbed Tahini Vegetables",
+        recipeMeta: "Grounded plate",
+        recipeDetail: "Roasted cauliflower and carrots, tahini-herb drizzle, toasted almonds.",
+        note: "Sip water before coffee."
+      },
+      {
+        day: "Friday", short: "Fri",
+        affirmation: "I celebrate my body with breath and bright food.",
+        seqId: "wave",
+        recipe: "Rainbow Chickpea Salad",
+        recipeMeta: "Joyful sips & bites",
+        recipeDetail: "Chickpeas, cherry tomato, cucumber, olive, parsley, lemon, olive oil.",
+        note: "Invite lightness — this breath is a wave, not a grind."
+      },
+      {
+        day: "Saturday", short: "Sat",
+        affirmation: "I rest as deeply as I rise.",
+        seqId: "soothe",
+        recipe: "Cacao-Adaptogen Elixir",
+        recipeMeta: "Nervous-system sip",
+        recipeDetail: "Oat milk, raw cacao, cinnamon, pinch of sea salt. Pair with fruit.",
+        note: "Step outside for eight breaths of outdoor air."
+      }
+    ];
+
+    const seqById = Object.fromEntries(sequences.map((s) => [s.id, s]));
+    const todayIndex = new Date().getDay();
+    let peekIndex = todayIndex;
+
+    const renderToday = () => {
+      const t = week[todayIndex];
+      const s = seqById[t.seqId];
+      document.getElementById("todayMeta").textContent = t.day + " · Today’s rhythm";
+      document.getElementById("todayAffirm").textContent = "“" + t.affirmation + "”";
+      document.getElementById("todayBreath").textContent = s.name;
+      document.getElementById("todayBreathDetail").textContent = s.pattern + " · " + s.minutes + " min";
+      document.getElementById("todayRecipe").textContent = t.recipe;
+      document.getElementById("todayRecipeDetail").textContent = t.recipeDetail;
+    };
+
+    const renderPeek = () => {
+      const t = week[peekIndex];
+      const s = seqById[t.seqId];
+      document.getElementById("peekMeta").textContent = t.day + (peekIndex === todayIndex ? " · today" : "");
+      document.getElementById("peekAffirm").textContent = "“" + t.affirmation + "”";
+      document.getElementById("peekBody").textContent = s.name + " · " + t.recipe + " — " + t.note;
+      document.querySelectorAll("#weekStrip button").forEach((b, i) => {
+        b.classList.toggle("active", i === peekIndex);
+      });
+    };
+
+    const weekStrip = document.getElementById("weekStrip");
+    week.forEach((t, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = t.short;
+      b.setAttribute("aria-label", t.day);
+      b.addEventListener("click", () => { peekIndex = i; renderPeek(); });
+      weekStrip.appendChild(b);
+    });
+    renderToday();
+    renderPeek();
+
+    let activeSeq = seqById[week[todayIndex].seqId];
+    const seqGrid = document.getElementById("seqGrid");
+    const seqName = document.getElementById("seqName");
+    const startBtn = document.getElementById("startBtn");
+    const phaseEl = document.getElementById("phase");
+    const clock = document.getElementById("clock");
+    const remainingEl = document.getElementById("remaining");
+    const bar = document.getElementById("bar");
+    let timerId = null;
+    let totalLeft = 0;
+    let totalDuration = 0;
+    let phaseIndex = 0;
+    let phaseLeft = 0;
+
+    const renderSeqCards = () => {
+      seqGrid.innerHTML = "";
+      sequences.forEach((s) => {
+        const day = week.find((w) => w.seqId === s.id);
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "card selectable" + (s.id === activeSeq.id ? " active" : "");
+        btn.innerHTML =
+          '<div class="meta">' + (day ? day.short + " · " + day.day : "Sequence") + "</div>" +
+          "<h3>" + s.name + "</h3>" +
+          "<p>" + s.blurb + "</p>" +
+          (day ? '<p class="timer-sub" style="margin-top:10px;font-style:italic">“' + day.affirmation + '”</p>' : "");
+        btn.addEventListener("click", () => {
+          if (timerId) return;
+          activeSeq = s;
+          resetTimerDisplay();
+          renderSeqCards();
+        });
+        seqGrid.appendChild(btn);
+      });
+    };
+
+    const fmt = (s) => {
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return String(m) + ":" + String(r).padStart(2, "0");
+    };
+
+    const resetTimerDisplay = () => {
+      totalDuration = activeSeq.minutes * 60;
+      totalLeft = totalDuration;
+      phaseIndex = 0;
+      phaseLeft = activeSeq.phases[0][1];
+      phaseEl.textContent = "Ready";
+      clock.textContent = String(activeSeq.phases[0][1]).padStart(2, "0");
+      seqName.textContent = activeSeq.name + " · " + activeSeq.pattern;
+      remainingEl.textContent = fmt(totalDuration) + " total";
+      startBtn.textContent = "Start " + activeSeq.minutes + " min";
+      bar.style.width = "0%";
+    };
+
+    const stop = () => {
+      clearInterval(timerId);
+      timerId = null;
+      startBtn.disabled = false;
+      renderSeqCards();
+      resetTimerDisplay();
+    };
+
+    const tick = () => {
+      if (totalLeft <= 0) {
+        phaseEl.textContent = "Complete";
+        clock.textContent = "00";
+        remainingEl.textContent = "Session complete — hold today’s affirmation once more";
+        bar.style.width = "100%";
+        clearInterval(timerId);
+        timerId = null;
+        startBtn.disabled = false;
+        renderSeqCards();
+        return;
+      }
+      phaseEl.textContent = activeSeq.phases[phaseIndex][0];
+      clock.textContent = String(phaseLeft).padStart(2, "0");
+      remainingEl.textContent = fmt(totalLeft) + " remaining";
+      bar.style.width = (((totalDuration - totalLeft) / totalDuration) * 100).toFixed(2) + "%";
+      phaseLeft -= 1;
+      totalLeft -= 1;
+      if (phaseLeft <= 0) {
+        phaseIndex = (phaseIndex + 1) % activeSeq.phases.length;
+        phaseLeft = activeSeq.phases[phaseIndex][1];
+      }
+    };
+
+    startBtn.addEventListener("click", () => {
+      if (timerId) return;
+      resetTimerDisplay();
+      startBtn.disabled = true;
+      renderSeqCards();
+      tick();
+      timerId = setInterval(tick, 1000);
+    });
+    document.getElementById("stopBtn").addEventListener("click", stop);
+
+    document.getElementById("startTodayBtn").addEventListener("click", () => {
+      activeSeq = seqById[week[todayIndex].seqId];
+      resetTimerDisplay();
+      renderSeqCards();
+      go("breathe");
+    });
+
+    const recipeGrid = document.getElementById("recipeGrid");
+    week.forEach((t, i) => {
+      const s = seqById[t.seqId];
+      const art = document.createElement("article");
+      art.className = "card" + (i === todayIndex ? " today" : "");
+      art.id = "recipe-" + t.short.toLowerCase();
+      art.innerHTML =
+        '<div class="meta">' + t.day + (i === todayIndex ? " · today" : "") + " · " + t.recipeMeta + "</div>" +
+        "<h3>" + t.recipe + "</h3>" +
+        "<p>" + t.recipeDetail + "</p>" +
+        '<p class="timer-sub" style="margin-top:10px">Pair with ' + s.name + "</p>" +
+        '<p class="timer-sub" style="margin-top:6px;font-style:italic">“' + t.affirmation + '”</p>';
+      recipeGrid.appendChild(art);
+    });
+
+    const daysEl = document.getElementById("days");
+    const resetProgress = document.getElementById("resetProgress");
+    const saved = JSON.parse(localStorage.getItem("bliss-reset") || "{}");
+    const renderProgress = () => {
+      const n = week.reduce((acc, _, i) => acc + (saved[i] ? 1 : 0), 0);
+      resetProgress.textContent = n + " of 7 days complete";
+    };
+    week.forEach((t, i) => {
+      const s = seqById[t.seqId];
+      const wrap = document.createElement("div");
+      wrap.className = "day";
+      wrap.innerHTML =
+        '<input type="checkbox" ' + (saved[i] ? "checked" : "") + ' data-i="' + i + '" aria-label="' + t.day + ' complete" />' +
+        "<div><strong>" + t.day + "</strong>" +
+        '<div class="detail">' + s.name + " · " + t.recipe + "</div>" +
+        '<div class="prompt">“' + t.affirmation + '” — ' + t.note + "</div></div>";
+      daysEl.appendChild(wrap);
+    });
+    daysEl.addEventListener("change", (e) => {
+      if (e.target.dataset.i == null) return;
+      saved[e.target.dataset.i] = e.target.checked;
+      localStorage.setItem("bliss-reset", JSON.stringify(saved));
+      renderProgress();
+    });
+    renderProgress();
+
+    // Formspree: set your form id from https://formspree.io (Dashboard → New Form)
+    const FORMSPREE_ID = window.BLISS_FORMSPREE_ID || "";
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const v = document.getElementById("email").value.trim();
+      if (!v.includes("@") || !v.includes(".")) return;
+      const btn = document.getElementById("signup");
+      btn.disabled = true;
+      if (!FORMSPREE_ID) {
+        localStorage.setItem("bliss-email", v);
+        document.getElementById("thanks").classList.remove("hidden");
+        return;
+      }
+      try {
+        const res = await fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+          method: "POST",
+          headers: { "Accept": "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify({ email: v, _subject: "Blissbreath 7-Day Lifestyle Reset" })
+        });
+        if (!res.ok) throw new Error("submit failed");
+        localStorage.setItem("bliss-email", v);
+        document.getElementById("thanks").classList.remove("hidden");
+      } catch (err) {
+        btn.disabled = false;
+        alert("Couldn’t reach the signup service — try again in a moment.");
+      }
+    });
+    if (localStorage.getItem("bliss-email")) {
+      document.getElementById("thanks").classList.remove("hidden");
+      document.getElementById("email").value = localStorage.getItem("bliss-email");
+      document.getElementById("signup").disabled = true;
+    }
+
+    resetTimerDisplay();
+    renderSeqCards();
+
+    const hash = location.hash.replace("#", "");
+    if (pages.includes(hash)) go(hash);
+
+
+    /* —— Bliss Breath Life 2026 Path —— */
+    const pathData = window.BLISS_PATH_2026 || null;
+    const isoToday = () => {
+      const d = new Date();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return d.getFullYear() + "-" + m + "-" + day;
+    };
+    const findDay = (iso) => {
+      if (!pathData || !pathData.days) return null;
+      return pathData.days.find((x) => x.date === iso) || null;
+    };
+    const pranayamaToSeq = {
+      sama: "box", nadi: "coherence", dirgha: "energy", ujjayi: "wave",
+      longexhale: "soothe", box: "box", watch: "soothe", coherence: "coherence",
+      triangle: "triangle", wave: "wave", gratitude: "gratitude", energy: "energy", soothe: "soothe"
+    };
+    const renderPath = () => {
+      const entry = findDay(isoToday()) || (pathData && pathData.days && pathData.days[0]) || null;
+      const breathsGrid = document.getElementById("breathsGrid");
+      breathsGrid.innerHTML = "";
+      if (pathData && pathData.breaths) {
+        pathData.breaths.forEach((b) => {
+          const art = document.createElement("article");
+          art.className = "card";
+          art.innerHTML = '<div class="meta">Breath ' + b.number + '</div><h3>' + b.name + '</h3><p>' + (b.essence || "") + '</p>';
+          breathsGrid.appendChild(art);
+        });
+      }
+      if (!entry) {
+        document.getElementById("pathAffirm").textContent = "Calendar loading — refresh after path-data.js is present.";
+        return;
+      }
+      document.getElementById("pathDateMeta").textContent =
+        entry.date + " · " + (entry.breathName || "") + (entry.date === isoToday() ? " · today" : "");
+      document.getElementById("pathAffirm").textContent = "“" + entry.affirmation + "”";
+      document.getElementById("pathChips").innerHTML =
+        '<div class="pair-chip"><div class="label">Pranayama</div><strong>' + entry.pranayama.split("–")[0].split("-")[0].trim().slice(0, 48) + '</strong><p class="timer-sub">' + entry.pranayama + '</p></div>' +
+        '<div class="pair-chip"><div class="label">Yoga</div><strong>' + entry.yoga.split("–")[0].split("—")[0].trim().slice(0, 48) + '</strong><p class="timer-sub">' + entry.yoga + '</p></div>';
+      document.getElementById("pathDetails").innerHTML =
+        '<article class="card"><div class="meta">Meditation</div><p>' + entry.meditation + '</p></article>' +
+        '<article class="card"><div class="meta">Ayurveda</div><p>' + entry.ayurveda + '</p></article>' +
+        '<article class="card"><div class="meta">Reflection</div><p style="font-style:italic">' + entry.reflection + '</p></article>' +
+        (entry.monthAffirmation ? '<article class="card"><div class="meta">This month’s guiding affirmation</div><p class="affirmation" style="font-size:20px">“' + entry.monthAffirmation + '”</p></article>' : "") +
+        (entry.recipe ? '<article class="card"><div class="meta">Weekly recipe</div><p>' + entry.recipe + '</p></article>' : "");
+      document.getElementById("pathStartBreath").onclick = () => {
+        const sid = pranayamaToSeq[entry.pranayamaId] || "gratitude";
+        if (typeof seqById !== "undefined" && seqById[sid]) {
+          activeSeq = seqById[sid];
+          resetTimerDisplay();
+          renderSeqCards();
+        }
+        go("breathe");
+      };
+    };
+    renderPath();
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    }
+  </script>
+</body>
+</html>

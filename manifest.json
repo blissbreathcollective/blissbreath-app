@@ -1,0 +1,18 @@
+{
+  "name": "Blissbreath Lifestyle Collective",
+  "short_name": "Blissbreath",
+  "description": "Conscious breath + nature-aligned nourishment. Where veggie vibes meet joyful sips.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf7f2",
+  "theme_color": "#faf7f2",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%233d6b66'/%3E%3Cpath d='M160 300c50-80 142-80 192 0' fill='none' stroke='%23faf7f2' stroke-width='28' stroke-linecap='round'/%3E%3Ccircle cx='256' cy='210' r='28' fill='%23faf7f2'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
