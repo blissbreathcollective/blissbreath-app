@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #faf6ef;
+  --color-ivory-warm: #f3ebe0;
+  --color-linen: #faf7f2;
+  --color-sand: #e8dcc8;
+  --color-sage: #8a9a7b;
+  --color-sage-deep: #6b7d5e;
+  --color-sage-soft: #c5d0b8;
+  --color-forest: #2f3d32;
+  --color-forest-soft: #4a5c4e;
+  --color-ink: #2f3d32;
+  --color-muted: #6e7a6c;
+  --color-paper: #fffcf7;
+  --color-rose: #c9a9a6;
+  --color-line: #e4ddd2;
+  --color-gold: #c4a574;
+
+  --color-bg: #faf6ef;
+  --color-surface: #fffcf7;
+  --color-fg: #2f3d32;
+  --color-primary: #6b7d5e;
+  --color-border: #e4ddd2;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 14px 40px rgba(47, 61, 50, 0.07);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-ivory);
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.18;
+    text-wrap: balance;
+    color: var(--color-forest);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  details summary {
+    list-style: none;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-sage) 35%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.orb {
+  --orb-scale: 0.74;
+  --orb-ms: 900ms;
+  transform: scale(var(--orb-scale));
+  transition: transform var(--orb-ms) cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+.stagger-in > * {
+  animation: rise 520ms var(--ease-out) both;
+}
+.stagger-in > *:nth-child(1) {
+  animation-delay: 40ms;
+}
+.stagger-in > *:nth-child(2) {
+  animation-delay: 100ms;
+}
+.stagger-in > *:nth-child(3) {
+  animation-delay: 160ms;
+}
+.stagger-in > *:nth-child(4) {
+  animation-delay: 220ms;
+}
+.stagger-in > *:nth-child(5) {
+  animation-delay: 280ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes breathe-glow {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+.kala-track {
+  position: relative;
+  height: 0.55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-sand) 80%, var(--color-sage-soft));
+}
+
+.kala-track > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.kala-vata {
+  background: color-mix(in oklab, var(--color-sage) 55%, var(--color-paper));
+}
+
+.kala-pitta {
+  background: color-mix(in oklab, var(--color-forest) 38%, var(--color-sand));
+}
+
+.kala-kapha {
+  background: color-mix(in oklab, var(--color-sage-deep) 45%, var(--color-ivory-warm));
+}
+
+.kala-now {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  background: var(--color-forest);
+  border-radius: 1px;
+  transform: translateX(-1px);
+}
+
+.tri-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 0 0.5rem;
+}
+
+.tri-mark i {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+}
+
+.tri-mark i:nth-child(1) {
+  background: color-mix(in oklab, var(--color-sage) 32%, transparent);
+  margin-right: -1.1rem;
+}
+
+.tri-mark i:nth-child(2) {
+  background: color-mix(in oklab, var(--color-forest) 18%, transparent);
+  z-index: 1;
+}
+
+.tri-mark i:nth-child(3) {
+  background: color-mix(in oklab, var(--color-sand) 85%, var(--color-sage-soft));
+  margin-left: -1.1rem;
+}
