@@ -22,7 +22,7 @@
 import { spawn } from "node:child_process";
 import { readFileSync, realpathSync } from "node:fs";
 import { constants as osConstants } from "node:os";
-import { dirname, join } from "node:path";
+import { delimiter, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const APP_ENV_REL_PATH = ".grok/app-env.json";
@@ -111,6 +111,8 @@ function main(argv) {
     process.exit(2);
   }
   const env = mergeAppEnv(readAppEnv(projectRoot()), process.env);
+  const binDir = join(projectRoot(), "node_modules", ".bin");
+  env.PATH = `${binDir}${delimiter}${env.PATH ?? ""}`;
   const child = spawn(command, args, { stdio: "inherit", env });
   // The dev server is long-running and is stopped by signalling this wrapper.
   for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
