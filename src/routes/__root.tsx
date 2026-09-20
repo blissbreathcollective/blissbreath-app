@@ -1,13 +1,24 @@
+import { useEffect, useState } from "react";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { AppShell } from "@/components/layout/AppShell";
+import { GateLanding } from "@/components/layout/GateLanding";
+import { GATE_STORAGE_KEY, readSanctuaryGate } from "@/lib/gate";
 import { HASH_BOOT_SCRIPT } from "@/lib/hash-routes";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "Blissbreath Lifestyle Collective";
 
 export const Route = createRootRoute({
+  beforeLoad: async () => {
+    try {
+      const { open } = await readSanctuaryGate();
+      return { sanctuaryOpen: open };
+    } catch {
+      return { sanctuaryOpen: false };
+    }
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -19,6 +30,7 @@ export const Route = createRootRoute({
           "Breathe into Bliss. Breath, movement, mindset, and nature-aligned nourishment — a quieter stay.",
       },
       { name: "theme-color", content: "#faf6ef" },
+      { name: "robots", content: "noindex, nofollow" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-title", content: "Blissbreath" },
     ],
@@ -35,7 +47,28 @@ export const Route = createRootRoute({
       },
     ],
   }),
-  component: () => (
+  component: RootDocument,
+});
+
+function RootDocument() {
+  const { sanctuaryOpen } = Route.useRouteContext();
+  const [clientOpen, setClientOpen] = useState(sanctuaryOpen);
+
+  useEffect(() => {
+    if (sanctuaryOpen) {
+      setClientOpen(true);
+      return;
+    }
+    try {
+      if (localStorage.getItem(GATE_STORAGE_KEY) === "1") setClientOpen(true);
+    } catch {
+      /* private mode */
+    }
+  }, [sanctuaryOpen]);
+
+  const open = sanctuaryOpen || clientOpen;
+
+  return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
@@ -44,12 +77,16 @@ export const Route = createRootRoute({
         <PreviewHostBridge />
         <script dangerouslySetInnerHTML={{ __html: HASH_BOOT_SCRIPT }} />
         <AuthProvider>
-          <AppShell>
-            <Outlet />
-          </AppShell>
+          {open ? (
+            <AppShell>
+              <Outlet />
+            </AppShell>
+          ) : (
+            <GateLanding onOpened={() => setClientOpen(true)} />
+          )}
         </AuthProvider>
         <Scripts />
       </body>
     </html>
-  ),
-});
+  );
+}

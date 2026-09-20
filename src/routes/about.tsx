@@ -1,9 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { GATE_STORAGE_KEY, closeSanctuary } from "@/lib/gate";
 
 export const Route = createFileRoute("/about")({ component: AboutPage });
 
 function AboutPage() {
+  async function closeDoor() {
+    try {
+      await closeSanctuary();
+    } catch {
+      /* still close locally */
+    }
+    try {
+      localStorage.removeItem(GATE_STORAGE_KEY);
+    } catch {
+      /* private mode */
+    }
+    window.location.assign("/");
+  }
+
   return (
     <div className="space-y-8">
       <header>
@@ -84,6 +99,14 @@ function AboutPage() {
         Blissbreath Lifestyle Collective supports wellbeing and conscious lifestyle education and is
         not a substitute for medical care.
       </p>
+
+      <button
+        type="button"
+        onClick={() => void closeDoor()}
+        className="font-sans text-xs tracking-wide text-muted underline-offset-4 hover:text-forest hover:underline"
+      >
+        Close the door
+      </button>
     </div>
   );
 }

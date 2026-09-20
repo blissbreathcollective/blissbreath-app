@@ -2,5 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "tanstack-start",
   "installCommand": "npm install --include=dev",
-  "buildCommand": "node scripts/with-app-env.mjs vite build"
+  "buildCommand": "node scripts/with-app-env.mjs vite build",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
 }
